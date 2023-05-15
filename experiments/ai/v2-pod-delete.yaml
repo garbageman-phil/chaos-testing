@@ -54,8 +54,6 @@ spec:
           env:
             - name: TARGET_PODS
               value: "nginx-1"
-        jobCleanupPolicy: delete
-  jobCleanUpPolicy: delete
   schedule:
     interval: "1h"
     cron: "35 * * * *"
