@@ -56,4 +56,4 @@ spec:
               value: "nginx-1"
   schedule:
     interval: "1h"
-    cron: "35 * * * *"
+    cron: "37 * * * *"
