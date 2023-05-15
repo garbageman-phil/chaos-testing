@@ -1,0 +1,48 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: balanced-pod-delete-chaos
+  namespace: litmus
+  labels:
+    context: balanced
+    workflow_name: balanced
+spec:
+  appinfo:
+    appns: litmus
+    app_label: 'app=balanced'
+    appkind: 'deployment'
+  annotationCheck: 'false'
+  engineState: 'active'
+  chaosServiceAccount: container-kill-sa
+  jobCleanUpPolicy: 'retain'
+  components:
+    runner:
+      imagePullPolicy: Always
+      experiments:
+        - name: pod-delete
+          spec:
+           probe:
+           - name: "hit balanced svc"
+             type: "httpProbe"
+             httpProbe/inputs:
+               url: "http://balanced.default.svc.cluster.local:8080"
+               insecureSkipVerify: false
+               method:
+                 get:
+                   criteria: "=="
+                   responseCode: "200"
+             mode: "Continuous"
+             runProperties:
+               probeTimeout: 1
+               interval: 1
+               retry: 1
+           components:
+             env:
+               - name: TOTAL_CHAOS_DURATION
+                 value: '30'
+               # set chaos interval (in sec) as desired
+               - name: CHAOS_INTERVAL
+                 value: '10'
+               # pod failures without '--force' & default terminationGracePeriodSeconds
+               - name: FORCE
+                 value: 'false'
