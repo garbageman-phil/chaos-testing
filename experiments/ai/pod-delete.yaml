@@ -59,3 +59,13 @@ spec:
   schedule:
     interval: "1h"
     cron: "10 * * * *"
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosWorkflow
+metadata:
+  name: nginx-chaos-workflow
+spec:
+  entrypoint: nginx-chaos-scenario
+  templates:
+    - name: nginx-chaos-scenario
+      chaosEngine: nginx-chaos-scenario
