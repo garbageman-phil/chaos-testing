@@ -24,7 +24,7 @@ spec:
                 - name: TARGET_PODS
                   value: "nginx-1"
                 - name: TARGET_CONTAINER
-                  value: "nginx"
+                  value: "my-pod"  # Update container name to "my-pod"
             jobCleanupPolicy: delete
         - name: pod-cpu-hog
           spec:
@@ -33,7 +33,7 @@ spec:
                 - name: TARGET_PODS
                   value: "nginx-1"
                 - name: TARGET_CONTAINER
-                  value: "nginx"
+                  value: "my-pod"  # Update container name to "my-pod"
             jobCleanupPolicy: delete
 ---
 apiVersion: litmuschaos.io/v1alpha1
