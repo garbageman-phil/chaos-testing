@@ -2,6 +2,7 @@ apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosExperiment
 metadata:
   name: nginx-chaos-experiment
+  namespace: litmus
 spec:
   definition:
     apiVersion: litmuschaos.io/v1alpha1
@@ -40,6 +41,7 @@ apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
   name: nginx-chaos-scenario
+  namespace: litmus
 spec:
   appinfo:
     appns: default
