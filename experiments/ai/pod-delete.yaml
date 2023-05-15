@@ -1,41 +1,61 @@
 apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosExperiment
+metadata:
+  name: nginx-chaos-experiment
+spec:
+  definition:
+    apiVersion: litmuschaos.io/v1alpha1
+    kind: ChaosExperiment
+    metadata:
+      name: nginx-chaos-experiment
+    spec:
+      experiments:
+        - name: pod-delete
+          spec:
+            components:
+              env:
+                - name: TARGET_PODS
+                  value: "nginx-1"
+            jobCleanupPolicy: delete
+        - name: pod-network-latency
+          spec:
+            components:
+              env:
+                - name: TARGET_PODS
+                  value: "nginx-1"
+                - name: TARGET_CONTAINER
+                  value: "nginx"
+            jobCleanupPolicy: delete
+        - name: pod-cpu-hog
+          spec:
+            components:
+              env:
+                - name: TARGET_PODS
+                  value: "nginx-1"
+                - name: TARGET_CONTAINER
+                  value: "nginx"
+            jobCleanupPolicy: delete
+---
+apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: nginx-chaos
+  name: nginx-chaos-scenario
 spec:
-  appinfo:   # Target application information
+  appinfo:
     appns: default
-    applabel: app=nginx-1
+    applabel: app=nginx
     appkind: deployment
   chaosServiceAccount: litmus-admin
   monitoring: false
-  jobCleanUpPolicy: delete
   experiments:
-    - name: pod-delete
+    - name: nginx-chaos-experiment
       spec:
         components:
           env:
             - name: TARGET_PODS
               value: "nginx-1"
-          jobCleanupPolicy: delete
-    - name: pod-network-latency
-      spec:
-        components:
-          env:
-            - name: TARGET_PODS
-              value: "nginx-1"
-            - name: TARGET_CONTAINER
-              value: "nginx"
-          jobCleanupPolicy: delete
-    - name: pod-cpu-hog
-      spec:
-        components:
-          env:
-            - name: TARGET_PODS
-              value: "nginx-1"
-            - name: TARGET_CONTAINER
-              value: "nginx"
-          jobCleanupPolicy: delete
+        jobCleanupPolicy: delete
+  jobCleanUpPolicy: delete
   schedule:
     interval: "1h"
     cron: "10 * * * *"
