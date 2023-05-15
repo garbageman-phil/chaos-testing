@@ -1,0 +1,40 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosExperiment
+metadata:
+  name: pod-kill-curl-test
+spec:
+  definition:
+    version: "1.0.0"
+    scope: Namespaced
+    permissions:
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create", "delete", "get"]
+    method:
+      - name: pod-kill
+        spec:
+          components:
+            - name: pod-selector
+              value: foo
+      - name: pod-network-latency
+        spec:
+          components:
+            - name: pod-selector
+              value: foo
+      - name: pod-cpu-hog
+        spec:
+          components:
+            - name: pod-selector
+              value: foo
+    probes:
+      - name: curl-test
+        spec:
+          components:
+            - name: url
+              value: http://<IP/Hostname>:8080/bar
+            - name: method
+              value: GET
+            - name: responseCode
+              value: "200"
+  schedule:
+    cron: "10 * * * *"
