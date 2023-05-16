@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx-1
+  name: nginx-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx-1
+    spec:
+      containers:
+      - command:
+        - /agnhost
+        - netexec
+        - --http-port
+        - "8080"
+        image: registry.k8s.io/e2e-test-images/agnhost:2.39
+        name: my-pod
+status: {}
