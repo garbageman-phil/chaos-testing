@@ -31,3 +31,20 @@ spec:
              ## percentage of total pods to target
             - name: PODS_AFFECTED_PERC
               value: ''
+  probe:
+    - name: 'nginx-1-http-probe'
+      type: 'httpProbe'
+      httpProbe/inputs:
+        url: 'http://nginx-1.nginx-1.svc.cluster.local:8080/hostname'
+        insecureSkipVerify: false
+        responseTimeout: 1000
+        method:
+          get:
+            criteria: == # supports == & != and oneof operations
+            responseCode: '200'
+      mode: 'Continuous'
+      runProperties:
+        probeTimeout: 1
+        interval: 1
+        retry: 1
+        probePollingInterval: 1
