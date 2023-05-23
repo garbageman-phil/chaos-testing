@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata: 
+  name: nginx-1
+  namespace: argocd
+spec: 
+  destination: 
+    namespace: nginx-1
+    server: "https://kubernetes.default.svc"
+  project: nginx-1
+  source: 
+    path: nginx-1
+    repoURL: "https://github.com/garbageman-phil/chaos-testing.git"
+    targetRevision: argo-setup
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
