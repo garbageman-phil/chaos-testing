@@ -1,0 +1,9 @@
+spec:
+  sourceRepos:
+  - 'https://github.com/garbageman-phil/chaos-testing.git'
+  destinations:
+  - namespace: 'nginx-1'
+    server: '*'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
