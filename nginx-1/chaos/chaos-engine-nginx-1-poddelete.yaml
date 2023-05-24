@@ -1,0 +1,50 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: nginx-1
+spec:
+  appinfo:
+    appns: 'nginx-1'
+    applabel: 'app=nginx-1'
+    appkind: 'deployment'
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: pod-delete-sa
+  experiments:
+    - name: pod-delete
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '300'
+
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '10'
+              
+            # pod failures without '--force' & default terminationGracePeriodSeconds
+            - name: FORCE
+              value: 'false'
+
+             ## percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''
+  probe:
+    - name: 'nginx-1-http-probe'
+      type: 'httpProbe'
+      httpProbe/inputs:
+        url: 'http://nginx-1.nginx-1.svc.cluster.local:8080/hostname'
+        insecureSkipVerify: false
+        responseTimeout: 1000
+        method:
+          get:
+            criteria: == # supports == & != and oneof operations
+            responseCode: '200'
+      mode: 'Continuous'
+      runProperties:
+        probeTimeout: 1
+        interval: 1
+        retry: 1
+        probePollingInterval: 1
