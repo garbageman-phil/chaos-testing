@@ -21,7 +21,7 @@ spec:
           httpProbe/inputs:
             url: 'http://nginx-1.nginx-1.svc.cluster.local:8080/hostname'
             responseTimeout: 1000
-            insecureSkipVerify: "true"
+            insecureSkipVerify: true
             method:
               get:
                 criteria: == # supports == & != and oneof operations
