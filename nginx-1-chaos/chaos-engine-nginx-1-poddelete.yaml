@@ -33,18 +33,18 @@ spec:
               value: ''
         probe:
           - name: 'nginx-1-http-probe'
-            type: 'httpProbe'
+            type: httpProbe
+            mode: 'Continuous'
             httpProbe/inputs:
               url: 'http://nginx-1.nginx-1.svc.cluster.local:8080/hostname'
               insecureSkipVerify: false
               responseTimeout: 1000
               method:
                 get:
-                  criteria: == # supports == & != and oneof operations
-                  responseCode: '300'
-            mode: 'Continuous'
+                  criteria: == 
+                  responseCode: "300"
             runProperties:
-              probeTimeout: 1
+              probeTimeout: 100
               interval: 1
               retry: 1
               probePollingInterval: 1
