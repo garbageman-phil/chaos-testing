@@ -43,7 +43,7 @@ spec:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - port: 8085
+  - port: 8086
     name: http
     protocol: TCP
     targetPort: 8080
