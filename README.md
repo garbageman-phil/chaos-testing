@@ -45,6 +45,7 @@ k create -f ./nginx-1/pod-delete-sa.yaml
 
 
 ### create platform specific chaos
+Setup, litmus should have its own dedicated nodes as the it could "knock the stool from under itself".  not sure how well this works w static pods.
 
 1. [node drain](https://hub.litmuschaos.io/generic/node-drain)
 experiment: `kubectl apply -f https://hub.litmuschaos.io/api/chaos/3.0.0-beta6?file=charts/generic/node-drain/experiment.yaml -n litmus`
@@ -55,3 +56,4 @@ types of probes / validations to prove successul might be:
 - check for same number of deployments running by label
 - check deployments for correct number of pods ie running pods = replicas
 - healthcheck or http probe success
+
