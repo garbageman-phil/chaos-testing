@@ -5,8 +5,9 @@ metadata:
   labels:
     app: nginx-2
   name: nginx-2
+  namespace: nginx-2
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: nginx-2
@@ -26,3 +27,27 @@ spec:
         image: registry.k8s.io/e2e-test-images/agnhost:2.39
         name: nginx-2-container
 status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx-2
+  name: nginx-2
+  namespace: nginx-2
+spec:
+  clusterIP: 10.108.52.177
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 8085
+    name: http
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: nginx-2
+  sessionAffinity: None
+  type: LoadBalancer
