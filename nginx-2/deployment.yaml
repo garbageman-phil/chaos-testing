@@ -36,7 +36,7 @@ metadata:
   name: nginx-2
   namespace: nginx-2
 spec:
-  clusterIP: 10.108.52.177
+  clusterIP: 10.108.52.178
   externalTrafficPolicy: Cluster
   internalTrafficPolicy: Cluster
   ipFamilies:
