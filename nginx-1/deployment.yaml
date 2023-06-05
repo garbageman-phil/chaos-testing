@@ -2,8 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
+  annotations:
+    litmuschaos/io/chaos: "true"
   labels:
     app: nginx-1
+    chaos: enabled
   name: nginx-1
   namespace: nginx-1
 spec:
@@ -26,6 +29,10 @@ spec:
         - "8080"
         image: registry.k8s.io/e2e-test-images/agnhost:2.39
         name: nginx-1-container
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
 status: {}
 ---
 apiVersion: v1
