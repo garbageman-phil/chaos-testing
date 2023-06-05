@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   annotations:
-    litmuschaos/io/chaos: "true"
+    litmuschaos.io/chaos: "true"
   labels:
     app: nginx-1
     chaos: enabled
@@ -17,9 +17,11 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      annotations:
+        litmuschaos.io/chaos: "true"
       labels:
         app: nginx-1
+        chaos: enabled
     spec:
       containers:
       - command:
