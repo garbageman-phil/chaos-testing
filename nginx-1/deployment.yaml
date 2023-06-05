@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: nginx-1
-    litmuschaos.io/chaos: true
+    litmuschaos.io/chaos: "true"
   name: nginx-1
   namespace: nginx-1
 spec:
