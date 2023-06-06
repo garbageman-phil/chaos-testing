@@ -8,9 +8,6 @@ metadata:
     Litmuschaos.io/workflow: 24a626d4-1a97-41f1-ac6b-66f0afa02181
   labels:
     app: nginx-2
-    litmuschaos.io/chaos: "true"
-    litmuschaos.io/gitops: "true"
-    Litmuschaos.io/workflow: 24a626d4-1a97-41f1-ac6b-66f0afa02181
     app.kubernetes.io/version: "1.1.0"
   name: nginx-2
   namespace: nginx-2
