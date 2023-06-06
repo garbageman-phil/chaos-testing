@@ -4,6 +4,8 @@ metadata:
   creationTimestamp: null
   annotations:
     litmuschaos.io/chaos: "true"
+    litmuschaos.io/gitops: "true"
+    litmuschaos.io/gitops: e28d5095-2541-42d5-98f5-52262695a40b
   labels:
     app: nginx-1
     chaos: enabled
@@ -19,6 +21,7 @@ spec:
     metadata:
       annotations:
         litmuschaos.io/chaos: "true"
+        litmuschaos.io/gitops: "true"
       labels:
         app: nginx-1
         chaos: enabled
