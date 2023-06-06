@@ -9,11 +9,11 @@ metadata:
   labels:
     app: nginx-1
     chaos: enabled
-    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/version: "1.0.1"
   name: nginx-1
   namespace: nginx-1
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: nginx-1
