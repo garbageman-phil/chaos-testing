@@ -1,13 +1,13 @@
-1. install mini-kube - https://minikube.sigs.k8s.io/docs/start/  `minikube start`
+1. install mini-kube - https://minikube.sigs.k8s.io/docs/start/  
+`minikube start --nodes=3 -p litmus-demo`
 2. add additional worker nodes with worker label
-`minikube node add --worker`
 `node-role.kubernetes.io/worker: ""`
 3. setup load balancer - https://minikube.sigs.k8s.io/docs/start/
 ```commandline
 kubectl create deployment balanced --image=kicbase/echo-server:1.0
 kubectl expose deployment balanced --type=LoadBalancer --port=8080
 ```
-`minikube tunnel`
+`minikube tunnel -p litmus-demo`
 
 4. check dns is working.  if not
 ```commandline
@@ -18,13 +18,14 @@ kubectl patch deployment coredns -n kube-system --patch '{"spec":{"template":{"s
 `k create ns nginx-1`
 `k create ns nginx-2`
 
-6. Install deployment
+6. Install deployment (or wait till argo)
 k create -f ./nginx-1/deployment.yaml
 k create -f ./nginx-2/deployment.yaml
 
 
-7. install litmus 
-`kubectl apply -f https://litmuschaos.github.io/litmus/3.0.0-beta6/litmus-3.0.0-beta6.yaml`
+7. create litmus namespace and install litmus 
+
+`kubectl apply -f https://litmuschaos.github.io/litmus/3.0.0-beta7/litmus-3.0.0-beta7.yaml`
 https://docs.litmuschaos.io/docs/getting-started/installation
 
 
