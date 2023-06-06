@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
-  annotation:
+  annotations:
     litmuschaos.io/chaos: "true"
     litmuschaos.io/gitops: "true"
     Litmuschaos.io/workflow: 24a626d4-1a97-41f1-ac6b-66f0afa02181
