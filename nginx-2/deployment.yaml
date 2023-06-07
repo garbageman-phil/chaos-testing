@@ -5,7 +5,7 @@ metadata:
   annotations:
     litmuschaos.io/chaos: "true"
     litmuschaos.io/gitops: "true"
-    Litmuschaos.io/workflow: 24a626d4-1a97-41f1-ac6b-66f0afa02181
+    Litmuschaos.io/workflow: 5b66ab3f-b153-4db1-a8ff-58537c51e387
   labels:
     app: nginx-2
     app.kubernetes.io/version: "1.1.1"
