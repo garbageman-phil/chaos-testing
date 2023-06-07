@@ -11,7 +11,7 @@ metadata:
   namespace: litmus
 spec:
   concurrencyPolicy: Forbid
-  schedule: 21 0-23 * * *
+  schedule: 22 0-23 * * *
   startingDeadlineSeconds: 0
   timezone: America/Los_Angeles
   workflowMetadata:
