@@ -9,14 +9,14 @@ metadata:
   labels:
     app: nginx-1
     chaos: enabled
-    app.kubernetes.io/version: "1.0.14"
+    app.kubernetes.io/version: "1.0.15"
     litmuschaos.io/chaos: "true"
     litmuschaos.io/gitops: "true"
     litmuschaos.io/workflow: 5c27b070-0273-4d63-9880-c44c505095f8
   name: nginx-1
   namespace: nginx-1
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: nginx-1
@@ -33,7 +33,7 @@ spec:
         litmuschaos.io/chaos: "true"
         litmuschaos.io/gitops: "true"
         litmuschaos.io/workflow: 5c27b070-0273-4d63-9880-c44c505095f8
-        app.kubernetes.io/version: "1.0.14"
+        app.kubernetes.io/version: "1.0.15"
     spec:
       containers:
       - command:
