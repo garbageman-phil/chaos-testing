@@ -10,6 +10,9 @@ metadata:
     app: nginx-1
     chaos: enabled
     app.kubernetes.io/version: "1.0.12"
+    litmuschaos.io/chaos: "true"
+    litmuschaos.io/gitops: "true"
+    litmuschaos.io/workflow: 5c27b070-0273-4d63-9880-c44c505095f8
   name: nginx-1
   namespace: nginx-1
 spec:
@@ -22,9 +25,14 @@ spec:
     metadata:
       annotations:
         litmuschaos.io/chaos: "true"
+        litmuschaos.io/gitops: "true"
+        litmuschaos.io/workflow: 5c27b070-0273-4d63-9880-c44c505095f8
       labels:
         app: nginx-1
         chaos: enabled
+        litmuschaos.io/chaos: "true"
+        litmuschaos.io/gitops: "true"
+        litmuschaos.io/workflow: 5c27b070-0273-4d63-9880-c44c505095f8
         app.kubernetes.io/version: "1.0.12"
     spec:
       containers:
